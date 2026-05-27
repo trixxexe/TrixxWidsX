@@ -41,7 +41,7 @@ class OnboardingActivity : AppCompatActivity() {
             )
         )
 
-        val adapter = OnboardingPagerAdapter(pages)
+        val adapter = OnboardingPagerAdapter(this, pages)
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabIndicator, binding.viewPager) { tab, _ ->
@@ -88,16 +88,15 @@ class OnboardingActivity : AppCompatActivity() {
     )
 
     private class OnboardingPagerAdapter(
+        activity: OnboardingActivity,
         private val pages: List<PageData>
-    ) : androidx.viewpager2.adapter.FragmentStateAdapter(
-        OnboardingActivity()
-    ) {
+    ) : androidx.viewpager2.adapter.FragmentStateAdapter(activity) {
         override fun getItemCount() = pages.size
 
         override fun createFragment(position: Int) = OnboardingPageFragment(pages[position])
     }
 
-    class OnboardingPageFragment(
+    private class OnboardingPageFragment(
         private val pageData: PageData
     ) : androidx.fragment.app.Fragment() {
 

@@ -12,6 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +23,7 @@ import com.trixxwids.app.data.WidgetEntity
 import com.trixxwids.app.databinding.FragmentMyWidgetsBinding
 import com.trixxwids.app.util.WidgetSizeUtil
 import com.trixxwids.app.viewmodel.MyWidgetsViewModel
+import kotlinx.coroutines.launch
 
 class MyWidgetsFragment : Fragment() {
 
@@ -52,9 +56,13 @@ class MyWidgetsFragment : Fragment() {
         binding.recyclerWidgets.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerWidgets.adapter = adapter
 
-        viewModel.widgets.observe(viewLifecycleOwner) { widgets ->
-            adapter.submitList(widgets)
-            binding.emptyState.visibility = if (widgets.isEmpty()) View.VISIBLE else View.GONE
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.widgets.collect { widgets ->
+                    adapter.submitList(widgets)
+                    binding.emptyState.visibility = if (widgets.isEmpty()) View.VISIBLE else View.GONE
+                }
+            }
         }
 
         viewModel.navigateToEditor.observe(viewLifecycleOwner) { widget ->
