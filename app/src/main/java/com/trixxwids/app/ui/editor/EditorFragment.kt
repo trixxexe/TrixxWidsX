@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.trixxwids.app.R
 import com.trixxwids.app.data.ElementType
 import com.trixxwids.app.data.ShapeType
 import com.trixxwids.app.data.WidgetConfig
