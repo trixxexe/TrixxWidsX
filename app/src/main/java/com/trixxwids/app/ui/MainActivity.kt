@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.gson.Gson
@@ -18,7 +19,7 @@ import com.trixxwids.app.viewmodel.EditorViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navHostFragment: NavHostFragment
+    private var navController: NavController? = null
     private lateinit var editorViewModel: EditorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,20 +31,20 @@ class MainActivity : AppCompatActivity() {
 
         checkFirstLaunch()
 
-        navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        val navController = navHostFragment.navController
-
         binding.toolbar.title = getString(R.string.app_name)
         setSupportActionBar(binding.toolbar)
 
-        binding.bottomNav.setupWithNavController(navController)
-
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            navController.navigate(item.itemId)
-            updateToolbarTitle(item)
-            true
+        supportFragmentManager.executePendingTransactions()
+        val host = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment)
+        if (host is NavHostFragment) {
+            navController = host.navController
+            binding.bottomNav.setupWithNavController(navController!!)
+            binding.bottomNav.setOnItemSelectedListener { item ->
+                navController?.navigate(item.itemId)
+                updateToolbarTitle(item)
+                true
+            }
         }
     }
 
@@ -59,8 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateToEditorWithWidget(widget: WidgetEntity) {
-        val navController = navHostFragment.navController
-        navController.navigate(R.id.editor_fragment)
+        navController?.navigate(R.id.editor_fragment)
 
         try {
             val config = Gson().fromJson(widget.configJson, WidgetConfig::class.java)
