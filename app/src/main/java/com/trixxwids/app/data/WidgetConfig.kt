@@ -5,9 +5,9 @@ import android.graphics.Typeface
 
 data class WidgetConfig(
     val elements: MutableList<WidgetElement> = mutableListOf(),
-    val backgroundColor: Int = Color.WHITE,
-    val backgroundOpacity: Int = 255,
-    val widgetSizeTag: String = "4x2"
+    var backgroundColor: Int = Color.WHITE,
+    var backgroundOpacity: Int = 255,
+    var widgetSizeTag: String = "4x2"
 )
 
 data class WidgetElement(
