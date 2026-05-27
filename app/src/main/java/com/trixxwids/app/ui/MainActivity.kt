@@ -3,6 +3,7 @@ package com.trixxwids.app.ui
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -24,27 +25,66 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        editorViewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
+            checkPreviousCrash()
 
-        checkFirstLaunch()
+            editorViewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
 
-        binding.toolbar.title = getString(R.string.app_name)
-        setSupportActionBar(binding.toolbar)
+            checkFirstLaunch()
 
-        supportFragmentManager.executePendingTransactions()
-        val host = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment)
-        if (host is NavHostFragment) {
-            navController = host.navController
-            binding.bottomNav.setupWithNavController(navController!!)
-            binding.bottomNav.setOnItemSelectedListener { item ->
-                navController?.navigate(item.itemId)
-                updateToolbarTitle(item)
-                true
+            binding.toolbar.title = getString(R.string.app_name)
+            setSupportActionBar(binding.toolbar)
+
+            binding.root.post {
+                setupNavigation()
             }
+        } catch (e: Throwable) {
+            try {
+                AlertDialog.Builder(this)
+                    .setTitle("Launch Error")
+                    .setMessage("${e::class.java.simpleName}: ${e.message}")
+                    .setPositiveButton("Exit") { _, _ -> finish() }
+                    .setCancelable(false)
+                    .show()
+            } catch (_: Throwable) {
+                finish()
+            }
+        }
+    }
+
+    private fun setupNavigation() {
+        try {
+            supportFragmentManager.executePendingTransactions()
+            val host = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+            if (host is NavHostFragment) {
+                navController = host.navController
+                if (navController != null) {
+                    binding.bottomNav.setupWithNavController(navController!!)
+                    binding.bottomNav.setOnItemSelectedListener { item ->
+                        navController?.navigate(item.itemId)
+                        updateToolbarTitle(item)
+                        true
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun checkPreviousCrash() {
+        val prefs = getSharedPreferences("crash_prefs", Context.MODE_PRIVATE)
+        val crash = prefs.getString("last_crash", null)
+        if (crash != null) {
+            prefs.edit().remove("last_crash").apply()
+            AlertDialog.Builder(this)
+                .setTitle("Previous Crash Detected")
+                .setMessage(crash.take(500))
+                .setPositiveButton("OK", null)
+                .show()
         }
     }
 
