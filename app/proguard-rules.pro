@@ -1,0 +1,3 @@
+-keepattributes *Annotation*
+-keep class com.trixxwids.app.data.** { *; }
+-keep class com.trixxwids.app.widget.** { *; }

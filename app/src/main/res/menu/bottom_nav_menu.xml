@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/editor_fragment"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/tab_editor" />
+    <item
+        android:id="@+id/my_widgets_fragment"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="@string/tab_my_widgets" />
+    <item
+        android:id="@+id/help_fragment"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/tab_help" />
+</menu>

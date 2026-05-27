@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_background">#FF121212</color>
+    <color name="dark_surface">#FF1E1E1E</color>
+    <color name="dark_card">#FF2C2C2C</color>
+    <color name="light_background">#FFF5F5F5</color>
+    <color name="light_surface">#FFFFFFFF</color>
+    <color name="light_card">#FFE8E8E8</color>
+    <color name="primary">#FF007AFF</color>
+    <color name="primary_dark">#FF0A84FF</color>
+    <color name="primary_container">#FFD4E6FF</color>
+    <color name="secondary">#FF5E5CE6</color>
+    <color name="tertiary">#FF34C759</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="on_background">#FF1C1B1F</color>
+    <color name="on_surface">#FF1C1B1F</color>
+    <color name="on_surface_dark">#FFE6E1E5</color>
+    <color name="outline">#FF79747E</color>
+    <color name="canvas_background">#FFE0E0E0</color>
+    <color name="canvas_background_dark">#FF2A2A2A</color>
+    <color name="widget_background">#FFFFFFFF</color>
+    <color name="widget_background_dark">#FF1E1E1E</color>
+    <color name="element_border">#FF007AFF</color>
+    <color name="element_handle">#FF007AFF</color>
+    <color name="transparent_overlay">#80000000</color>
+    <color name="snackbar_error">#FFFF3B30</color>
+    <color name="snackbar_success">#FF34C759</color>
+</resources>

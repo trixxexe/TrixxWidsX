@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TrixxWids" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.TrixxWids.Onboarding" parent="Theme.TrixxWids">
+        <item name="android:windowBackground">@color/dark_background</item>
+    </style>
+
+    <style name="Widget.TrixxWids.Canvas" parent="android:Widget">
+        <item name="android:background">@color/canvas_background</item>
+    </style>
+</resources>

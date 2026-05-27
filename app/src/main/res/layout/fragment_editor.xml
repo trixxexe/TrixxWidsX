@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/size_chip_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:chipSpacing="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/size_2x1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size_2x1"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/size_2x2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size_2x2"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/size_4x1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size_4x1"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/size_4x2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size_4x2"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/size_4x4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size_4x4"
+            style="@style/Widget.Material3.Chip.Filter" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <FrameLayout
+        android:id="@+id/canvas_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:background="@color/canvas_background"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toTopOf="@id/add_element_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/size_chip_group">
+
+        <com.trixxwids.app.ui.editor.CanvasView
+            android:id="@+id/canvas_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/add_element_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/properties_panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_text"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_clock"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_clock" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_date"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_date" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_weather"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_weather" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_shape"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_shape" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_image"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_image" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/properties_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/properties_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/properties"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_delete_element"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_element"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/snackbar_error"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_font_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:valueFrom="10"
+                android:valueTo="100"
+                android:value="24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/properties_title" />
+
+            <TextView
+                android:id="@+id/label_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/font_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/slider_font_size" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_font_color"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/label_font_size"
+                app:layout_constraintTop_toBottomOf="@id/slider_font_size"
+                app:icon="@android:drawable/ic_menu_color_swatch"
+                app:iconSize="20dp" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_opacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:valueFrom="0"
+                android:valueTo="255"
+                android:value="255"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_font_size" />
+
+            <TextView
+                android:id="@+id/label_opacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opacity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/slider_opacity" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_border_radius"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:valueFrom="0"
+                android:valueTo="100"
+                android:value="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_opacity" />
+
+            <TextView
+                android:id="@+id/label_border_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/border_radius"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/slider_border_radius" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_border_width"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:valueFrom="0"
+                android:valueTo="20"
+                android:value="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_border_radius" />
+
+            <TextView
+                android:id="@+id/label_border_width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/border_width"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/slider_border_width" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_border_color"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/label_border_width"
+                app:layout_constraintTop_toBottomOf="@id/slider_border_width"
+                app:icon="@android:drawable/ic_menu_color_swatch"
+                app:iconSize="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_bg_color"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/btn_border_color"
+                app:layout_constraintTop_toBottomOf="@id/slider_border_width"
+                android:text="Bg"
+                android:textSize="10sp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/save_widget"
+        android:src="@android:drawable/ic_menu_save"
+        app:layout_constraintBottom_toTopOf="@id/add_element_bar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_gyro"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/gyro_effect"
+        android:text="@string/gyro_effect"
+        app:layout_constraintBottom_toTopOf="@id/fab_save"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
